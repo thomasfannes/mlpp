@@ -10,8 +10,10 @@ install:
 # We want to compile with g++ 4.8 when rather than the default g++
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 90
 
-before script:
+before_script:
 # configure gubg for the fff build tool
+  - mkdir /tmp/fff
+  - export FFF_CACHE=/tmp/fff
   - git clone https://github.com/gfannes/gubg.git gubg
   - cd gubg
   - rake submods fff
