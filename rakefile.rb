@@ -9,10 +9,10 @@ namespace :test do
         end
     end
     task :build do
-        fff_all_tests('norun', $build_type, 'clang')
+        fff_all_tests('norun', $build_type)
     end
     task :run do
-        fff_all_tests($build_type, 'clang')
+        fff_all_tests($build_type)
     end
 end
 task :test => 'test:run'
