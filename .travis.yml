@@ -14,13 +14,15 @@ before_script:
 # configure gubg for the fff build tool
   - mkdir /tmp/fff
   - export FFF_CACHE=/tmp/fff
-  - git clone https://github.com/gfannes/gubg.git gubg
-  - cd gubg
+  - mkdir -p tools/gubg
+  - git clone https://github.com/gfannes/gubg.git tools/gubg
+  - cd tools/gubg
   - rake submods fff
   - export PATH=$PATH:`pwd`/GUBG_BUILD/bin/
   - echo $PATH
-  - cd ..
+  - cd ../../
 
 script: 
+  - ls
   - rake test
 
