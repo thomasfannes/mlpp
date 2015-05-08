@@ -1,3 +1,4 @@
 mlpp/mlpp.hpp
 mlpp/test/main.cpp
-mlpp/test/main2.cpp
+mlpp/test/no_main.cpp
+mlpp/test/wordGeneration.hpp
