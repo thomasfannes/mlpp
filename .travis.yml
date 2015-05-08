@@ -28,5 +28,5 @@ before_script:
 
 script: 
   - ls
-  - rake test
+  - VERBOSE=1 rake test
 
