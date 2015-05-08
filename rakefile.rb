@@ -1,4 +1,8 @@
-$build_type=:debug
+$compiler = ENV['CC'] || "g++"
+$build_type = ENV['BUILD_TYPE'] || "debug"
+$verbose = ENV['VERBOSE'] != nil
+
+
 $library_dirs=%w[/home/thomasf/boost/lib]
 $libs = %w[boost_system boost_program_options]
 $include_paths = %w[mlpp]
@@ -16,6 +20,13 @@ namespace :test do
 			return output, $?.to_i
 		end
 	end
+
+    def write_command_output(command, output)
+	if $verbose
+	        puts "Command: " + command
+		puts output
+	end
+    end
 	
     def fff_all_tests(execute_tests)
 		$stdout.sync = true
@@ -24,35 +35,27 @@ namespace :test do
         include_paths = $include_paths.map{ |path| "c++.tree:#{path}"}*' '
         library_dirs = $library_dirs.map{ |dir| "c++.library_path:#{dir}"}*' '
         
-        execTestMSG = execute_tests ? "Building and executing " : "Building "
+        execTestMSG = execute_tests ? "Build and executed " : "Build "
         
         FileList.new('**/test/*.cpp').each do |fn|
 			executableTest = fn.pathmap("%f").start_with?("no_") ? false : true
+
 			
-			if executableTest
-				print execTestMSG + "test '#{fn}': "
-			else
-				print "Building noncompilable test '#{fn}': "
-			end
-						
-			command = "fff #{libs} #{include_paths} #{library_dirs} #{fn}" + ( (execute_tests and executableTest) ? "" : " norun")
+			command = "fff #{libs} #{include_paths} #{library_dirs} #{fn} #{$compiler} #{$build_type}" + ( (execute_tests and executableTest) ? "" : " norun")
 			output,code = executeCommand(command)
-					
+			write_command_output(command, output)
+
+
+	
 			if (code == 0) == executableTest
-				puts "OK"
+			    puts "Test '#{fn}': Passed"
 			else
-				if executableTest
-					puts "Failed"
-					puts output
-				else
-					puts "Able to compile"
-				end	
-				fail "Test failed"
+			    fail "Test '#{fn}' failed"
 			end
         end
     end
     
-    task :build do
+    task :build do ||
         fff_all_tests(false)
     end
     
