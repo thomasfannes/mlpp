@@ -1,0 +1,5 @@
+chapters:
+   collection: chapters
+   prefix: book
+   template: _templates/overview.md
+   root_title: Table of contents

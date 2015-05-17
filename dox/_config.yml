@@ -1,0 +1,13 @@
+name: "Example"
+description: "Example demonstrating chapters"
+
+url: "http://localhost:4000"
+
+collections:
+  chapters:
+    output: true
+    
+defaults:
+  -
+    values:
+      layout: "default"

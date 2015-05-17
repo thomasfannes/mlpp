@@ -1,0 +1,19 @@
+<div class="right">
+{% if page.toc.prev %}
+<a href="{{page.toc.prev.url}}"><img src="{{site.url}}/fig/prev.png" width="40" height="40" alt="prev"></a>
+{% else %}
+<img src="{{site.url}}/fig/prev_i.png" width="40" height="40">
+{% endif %}
+
+{% if page.toc.up %}
+<a href="{{page.toc.up.url}}"><img src="{{site.url}}/fig/up.png" width="40" height="40" alt="up"></a>
+{% else %}
+<img src="{{site.url}}/fig/up_i.png" width="40" height="40">
+{% endif %}
+
+{% if page.toc.next %}
+<a href="{{page.toc.next.url}}"><img src="{{site.url}}/fig/next.png" width="40" height="40" alt="next"></a>
+{% else %}
+<img src="{{site.url}}/fig/next_i.png" width="40" height="40">
+{% endif %}
+</div>

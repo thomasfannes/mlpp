@@ -1,0 +1,6 @@
+[submodule "submods/snippet"]
+	path = submods/snippet
+	url = https://github.com/thomasfannes/jekyll_snippet.git
+[submodule "submods/toc"]
+	path = submods/toc
+	url = https://github.com/thomasfannes/jekyll_toc.git

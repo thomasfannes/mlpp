@@ -4,7 +4,6 @@ env:
   - BUILD_TYPE=debug
 compiler:
   - gcc
-  - clang
 before_install:
 # We need this line to have g++4.8 available in apt
   - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
