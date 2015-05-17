@@ -13,7 +13,7 @@ namespace :test do
 		output = ""
 		IO.popen(cmd + " 2>&1") do |io|
 			while line = io.gets
-				output += line.chomp!
+				output += line
 			end
 			
 			io.close
